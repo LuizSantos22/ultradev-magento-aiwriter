@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <UltraDev_AIWriter>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Adminhtml/>
+            </depends>
+        </UltraDev_AIWriter>
+    </modules>
+</config>
