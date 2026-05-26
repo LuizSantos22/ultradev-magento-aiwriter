@@ -1,0 +1,232 @@
+/* ── Overlay ─────────────────────────────────────────────────────────────── */
+#aiwriter-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Modal ───────────────────────────────────────────────────────────────── */
+#aiwriter-modal {
+    background: #fff;
+    border-radius: 8px;
+    width: 780px;
+    max-width: 96vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    overflow: hidden;
+}
+
+#aiwriter-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #6a4fc6;
+    color: #fff;
+}
+#aiwriter-modal-header h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+#aiwriter-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+#aiwriter-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* ── Campos ──────────────────────────────────────────────────────────────── */
+.aiwriter-field-group {
+    margin-bottom: 18px;
+}
+.aiwriter-field-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 13px;
+    color: #333;
+}
+.aiwriter-field-group input[type="text"],
+.aiwriter-preview-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: monospace;
+}
+.aiwriter-hint {
+    margin: 4px 0 0;
+    font-size: 11px;
+    color: #888;
+}
+
+/* ── Radio referência ────────────────────────────────────────────────────── */
+#aiwriter-ref-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+.aiwriter-radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.aiwriter-ref-badge {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+}
+.aiwriter-ref-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+#aiwriter-ref-search {
+    margin-top: 10px;
+}
+.aiwriter-ref-list {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+.aiwriter-ref-list li {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.aiwriter-ref-list li:hover {
+    background: #f0f4ff;
+}
+.aiwriter-ref-list li em {
+    color: #888;
+    font-size: 11px;
+}
+#aiwriter-ref-selected {
+    margin-top: 6px;
+}
+
+/* ── Botões ──────────────────────────────────────────────────────────────── */
+.aiwriter-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+.aiwriter-btn-primary {
+    padding: 9px 20px;
+    background: #6a4fc6;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.aiwriter-btn-primary:hover { background: #5a3fb6; }
+.aiwriter-btn-primary:disabled { background: #aaa; cursor: not-allowed; }
+.aiwriter-btn-secondary {
+    padding: 9px 20px;
+    background: #fff;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.aiwriter-btn-secondary:hover { background: #f5f5f5; }
+
+/* ── Erro ────────────────────────────────────────────────────────────────── */
+.aiwriter-error {
+    background: #fff0f0;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+/* ── Tabs preview ────────────────────────────────────────────────────────── */
+.aiwriter-preview-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 14px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 4px;
+}
+.aiwriter-tab {
+    padding: 6px 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 13px;
+    color: #555;
+    border-radius: 4px 4px 0 0;
+}
+.aiwriter-tab.active {
+    background: #6a4fc6;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* ── Preview fields ──────────────────────────────────────────────────────── */
+.aiwriter-preview-field {
+    margin-bottom: 14px;
+}
+.aiwriter-preview-field label {
+    display: block;
+    font-weight: bold;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.aiwriter-preview-value {
+    padding: 8px 10px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+.aiwriter-preview-textarea {
+    width: 100%;
+    resize: vertical;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.aiwriter-searching, .aiwriter-no-results, .aiwriter-error-inline {
+    padding: 8px;
+    font-size: 12px;
+    color: #888;
+}
