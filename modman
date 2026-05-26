@@ -1,0 +1,5 @@
+app/code/community/UltraDev/AIWriter                    app/code/community/UltraDev/AIWriter
+app/etc/modules/UltraDev_AIWriter.xml                   app/etc/modules/UltraDev_AIWriter.xml
+app/design/adminhtml/default/default/layout/ultradev_aiwriter.xml    app/design/adminhtml/default/default/layout/ultradev_aiwriter.xml
+app/design/adminhtml/default/default/template/ultradev/aiwriter      app/design/adminhtml/default/default/template/ultradev/aiwriter
+skin/adminhtml/default/default/ultradev/aiwriter                     skin/adminhtml/default/default/ultradev/aiwriter
