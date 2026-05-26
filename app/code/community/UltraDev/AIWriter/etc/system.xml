@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <ultradev_aiwriter translate="label" module="ultradev_aiwriter">
+            <label>UltraDev AI Writer</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Configurações Gerais</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Ativar AI Writer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <primary_api translate="label">
+                            <label>API Principal</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ultradev_aiwriter/system_config_source_api</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Em falha, o sistema tenta automaticamente a outra API.</comment>
+                        </primary_api>
+                        <gemini_api_key translate="label">
+                            <label>Gemini API Key</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gemini_api_key>
+                        <deepseek_api_key translate="label">
+                            <label>DeepSeek API Key</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </deepseek_api_key>
+                        <reference_product_id translate="label">
+                            <label>ID do Produto de Referência Padrão</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>ID do produto cujo anúncio será usado como template de formato e estilo.</comment>
+                        </reference_product_id>
+                    </fields>
+                </general>
+            </groups>
+        </ultradev_aiwriter>
+    </sections>
+</config>
