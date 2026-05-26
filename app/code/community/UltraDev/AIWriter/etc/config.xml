@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <UltraDev_AIWriter>
+            <version>1.0.0</version>
+        </UltraDev_AIWriter>
+    </modules>
+
+    <global>
+        <helpers>
+            <ultradev_aiwriter>
+                <class>UltraDev_AIWriter_Helper</class>
+            </ultradev_aiwriter>
+        </helpers>
+        <models>
+            <ultradev_aiwriter>
+                <class>UltraDev_AIWriter_Model</class>
+            </ultradev_aiwriter>
+        </models>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <UltraDev_AIWriter before="Mage_Adminhtml">UltraDev_AIWriter_Adminhtml</UltraDev_AIWriter>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <ultradev_aiwriter>
+                    <file>ultradev_aiwriter.xml</file>
+                </ultradev_aiwriter>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <ultradev_aiwriter>
+            <general>
+                <enabled>1</enabled>
+                <gemini_api_key></gemini_api_key>
+                <deepseek_api_key></deepseek_api_key>
+                <reference_product_id></reference_product_id>
+                <primary_api>gemini</primary_api>
+            </general>
+        </ultradev_aiwriter>
+    </default>
+</config>
