@@ -1,0 +1,137 @@
+<?php
+/** @var Mage_Adminhtml_Block_Template $this */
+$generateUrl    = $this->getUrl('adminhtml/aiwriter/generate');
+$searchUrl      = $this->getUrl('adminhtml/aiwriter/searchProduct');
+$defaultRefId   = (int) Mage::getStoreConfig('ultradev_aiwriter/general/reference_product_id');
+$isEnabled      = Mage::getStoreConfigFlag('ultradev_aiwriter/general/enabled');
+
+if (!$isEnabled) return;
+?>
+
+<!-- Botão injetado via JS após o campo Nome -->
+<script type="text/javascript">
+//<![CDATA[
+    var UltraDevAIWriter = {
+        generateUrl:  '<?php echo $generateUrl ?>',
+        searchUrl:    '<?php echo $searchUrl ?>',
+        defaultRefId: <?php echo $defaultRefId ?>,
+        formKey:      '<?php echo $this->getFormKey() ?>'
+    };
+//]]>
+</script>
+
+<!-- ======================== MODAL ======================== -->
+<div id="aiwriter-overlay" style="display:none;">
+    <div id="aiwriter-modal">
+
+        <div id="aiwriter-modal-header">
+            <h2>✨ Criar Anúncio com IA</h2>
+            <button type="button" id="aiwriter-close" title="Fechar">✕</button>
+        </div>
+
+        <div id="aiwriter-modal-body">
+
+            <!-- PASSO 1: Configuração -->
+            <div id="aiwriter-step-1">
+                <div class="aiwriter-field-group">
+                    <label for="aiwriter-product-name">Nome do produto a anunciar <span class="required">*</span></label>
+                    <input type="text" id="aiwriter-product-name" placeholder="Ex: Sony WH-1000XM6 Headphone Noise Cancelling Bluetooth"/>
+                    <p class="aiwriter-hint">O nome completo com especificações principais ajuda a IA a ser mais precisa.</p>
+                </div>
+
+                <div class="aiwriter-field-group">
+                    <label>Produto de referência (template de formato)</label>
+                    <div id="aiwriter-ref-toggle">
+                        <label class="aiwriter-radio">
+                            <input type="radio" name="ref_type" value="default" checked>
+                            Usar padrão das configurações
+                            <?php if ($defaultRefId): ?>
+                                <span class="aiwriter-ref-badge">ID: <?php echo $defaultRefId ?></span>
+                            <?php else: ?>
+                                <span class="aiwriter-ref-badge aiwriter-ref-warning">⚠ Nenhum configurado</span>
+                            <?php endif ?>
+                        </label>
+                        <label class="aiwriter-radio">
+                            <input type="radio" name="ref_type" value="custom">
+                            Escolher outro produto
+                        </label>
+                    </div>
+
+                    <div id="aiwriter-ref-search" style="display:none;">
+                        <input type="text" id="aiwriter-ref-input" placeholder="Digite para buscar produto de referência..."/>
+                        <div id="aiwriter-ref-results"></div>
+                        <input type="hidden" id="aiwriter-ref-id" value=""/>
+                        <div id="aiwriter-ref-selected"></div>
+                    </div>
+                </div>
+
+                <div id="aiwriter-error" class="aiwriter-error" style="display:none;"></div>
+
+                <div class="aiwriter-actions">
+                    <button type="button" id="aiwriter-generate-btn" class="aiwriter-btn-primary">
+                        <span id="aiwriter-btn-label">✨ Gerar Anúncio</span>
+                        <span id="aiwriter-btn-loading" style="display:none;">⏳ Gerando... aguarde</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASSO 2: Preview -->
+            <div id="aiwriter-step-2" style="display:none;">
+
+                <div class="aiwriter-preview-tabs">
+                    <button class="aiwriter-tab active" data-tab="basic">Dados Básicos</button>
+                    <button class="aiwriter-tab" data-tab="short">Short Description</button>
+                    <button class="aiwriter-tab" data-tab="long">Long Description</button>
+                    <button class="aiwriter-tab" data-tab="meta">Meta Fields</button>
+                </div>
+
+                <div class="aiwriter-tab-content" id="tab-basic">
+                    <div class="aiwriter-preview-field">
+                        <label>Nome</label>
+                        <div class="aiwriter-preview-value" id="preview-name"></div>
+                    </div>
+                </div>
+
+                <div class="aiwriter-tab-content" id="tab-short" style="display:none;">
+                    <div class="aiwriter-preview-field">
+                        <label>Short Description (HTML)</label>
+                        <textarea class="aiwriter-preview-textarea" id="preview-short" rows="6"></textarea>
+                    </div>
+                </div>
+
+                <div class="aiwriter-tab-content" id="tab-long" style="display:none;">
+                    <div class="aiwriter-preview-field">
+                        <label>Long Description (HTML)</label>
+                        <textarea class="aiwriter-preview-textarea" id="preview-long" rows="20"></textarea>
+                    </div>
+                </div>
+
+                <div class="aiwriter-tab-content" id="tab-meta" style="display:none;">
+                    <div class="aiwriter-preview-field">
+                        <label>Meta Title</label>
+                        <div class="aiwriter-preview-value" id="preview-meta-title"></div>
+                    </div>
+                    <div class="aiwriter-preview-field">
+                        <label>Meta Description</label>
+                        <div class="aiwriter-preview-value" id="preview-meta-description"></div>
+                    </div>
+                    <div class="aiwriter-preview-field">
+                        <label>Meta Keywords</label>
+                        <div class="aiwriter-preview-value" id="preview-meta-keywords"></div>
+                    </div>
+                    <div class="aiwriter-preview-field">
+                        <label>Meta Page Description</label>
+                        <div class="aiwriter-preview-value" id="preview-meta-page"></div>
+                    </div>
+                </div>
+
+                <div class="aiwriter-actions">
+                    <button type="button" id="aiwriter-back-btn" class="aiwriter-btn-secondary">← Voltar</button>
+                    <button type="button" id="aiwriter-apply-btn" class="aiwriter-btn-primary">✔ Aplicar nos Campos</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
