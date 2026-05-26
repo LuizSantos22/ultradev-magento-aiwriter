@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="head">
+            <action method="addCss">
+                <name>ultradev/aiwriter/aiwriter.css</name>
+            </action>
+            <action method="addJs">
+                <script>ultradev/aiwriter/aiwriter.js</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template"
+                   name="ultradev.aiwriter.modal"
+                   template="ultradev/aiwriter/modal.phtml"/>
+        </reference>
+    </adminhtml_catalog_product_edit>
+</layout>
