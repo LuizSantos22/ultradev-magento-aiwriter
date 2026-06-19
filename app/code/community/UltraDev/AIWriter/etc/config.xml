@@ -5,7 +5,6 @@
             <version>1.0.0</version>
         </UltraDev_AIWriter>
     </modules>
-
     <global>
         <helpers>
             <ultradev_aiwriter>
@@ -18,7 +17,6 @@
             </ultradev_aiwriter>
         </models>
     </global>
-
     <admin>
         <routers>
             <adminhtml>
@@ -30,7 +28,6 @@
             </adminhtml>
         </routers>
     </admin>
-
     <adminhtml>
         <layout>
             <updates>
@@ -40,7 +37,6 @@
             </updates>
         </layout>
     </adminhtml>
-
     <default>
         <ultradev_aiwriter>
             <general>
@@ -50,6 +46,12 @@
                 <reference_product_id></reference_product_id>
                 <primary_api>gemini</primary_api>
             </general>
+            <exa>
+                <enabled>0</enabled>
+                <api_key></api_key>
+                <num_results>5</num_results>
+                <timeout>8</timeout>
+            </exa>
         </ultradev_aiwriter>
     </default>
 </config>
