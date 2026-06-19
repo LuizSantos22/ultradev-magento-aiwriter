@@ -66,6 +66,56 @@
                         </reference_product_id>
                     </fields>
                 </general>
+                <exa translate="label">
+                    <label>Exa Search (Contexto Técnico Opcional)</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Ativar Busca de Contexto via Exa</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Se ativado, busca dados técnicos reais na web antes de gerar o anúncio (RAG). Se desativado ou falhar, o módulo gera o anúncio normalmente apenas com nome + produto de referência, como hoje.</comment>
+                        </enabled>
+                        <api_key translate="label">
+                            <label>Exa API Key</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
+                        </api_key>
+                        <num_results translate="label">
+                            <label>Número de Resultados</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Quantidade de páginas buscadas por produto (padrão: 5).</comment>
+                            <depends><enabled>1</enabled></depends>
+                        </num_results>
+                        <timeout translate="label">
+                            <label>Timeout (segundos)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Se a Exa não responder dentro deste tempo, o módulo segue sem o contexto extra (padrão: 8).</comment>
+                            <depends><enabled>1</enabled></depends>
+                        </timeout>
+                    </fields>
+                </exa>
             </groups>
         </ultradev_aiwriter>
     </sections>
