@@ -4,15 +4,35 @@ class UltraDev_AIWriter_Helper_Prompt extends Mage_Core_Helper_Abstract
     /**
      * Monta o prompt completo enviado à IA.
      *
-     * @param  string $productName   Nome do produto a ser criado
-     * @param  array  $reference     Dados do produto de referência
+     * @param  string      $productName   Nome do produto a ser criado
+     * @param  array       $reference     Dados do produto de referência
+     * @param  string|null $extraContext  Contexto técnico real vindo da Exa (opcional).
+     *                                    Quando null (Exa desativada ou sem resultado),
+     *                                    o prompt é montado exatamente como antes.
      * @return string
      */
-    public function build($productName, array $reference)
+    public function build($productName, array $reference, $extraContext = null)
     {
         $refShort = strip_tags($reference['short_description']);
         $refLong  = $reference['description'];
         $refTitle = $reference['name'];
+
+        $extraContextBlock = '';
+        if (!empty($extraContext)) {
+            $extraContextBlock = <<<CONTEXT
+
+
+## DADOS TÉCNICOS REAIS ENCONTRADOS NA WEB
+
+Use as informações abaixo como referência de PRECISÃO para specs, features e
+conteúdo técnico do produto {$productName}. Priorize estes dados reais sobre
+seu próprio conhecimento quando houver conflito. Mantenha o tom, formato e
+estrutura HTML definidos nas regras acima — isso aqui é apenas fonte de dados,
+não de estilo.
+
+{$extraContext}
+CONTEXT;
+        }
 
         return <<<PROMPT
 Você é um redator especialista em e-commerce brasileiro de eletrônicos de alta performance.
@@ -140,7 +160,7 @@ Responda SOMENTE com um objeto JSON válido, sem markdown, sem texto antes ou de
 5. Escreva em **português brasileiro**, tom técnico-comercial, focado em benefícios reais do produto.
 
 6. Use conhecimento real sobre o produto **{$productName}** para preencher specs, features e conteúdo — seja preciso e específico.
-
+{$extraContextBlock}
 ## PRODUTO DE REFERÊNCIA (apenas para formato)
 
 Short description do produto de referência:
