@@ -49,12 +49,10 @@ class UltraDev_AIWriter_Helper_Exa extends Mage_Core_Helper_Abstract
 
         $payload = array(
             'query'      => trim($productName) . ' especificações técnicas ficha técnica review',
+            'type'       => 'auto',
             'numResults' => $numResults,
             'contents'   => array(
-                'highlights' => array(
-                    'numSentences'     => 5,
-                    'highlightsPerUrl' => 2,
-                ),
+                'highlights' => true,
             ),
         );
 
@@ -73,8 +71,6 @@ class UltraDev_AIWriter_Helper_Exa extends Mage_Core_Helper_Abstract
             return $this->_formatContext($data['results']);
 
         } catch (Exception $e) {
-            // Qualquer falha aqui é tratada como "contexto indisponível",
-            // nunca como erro fatal do módulo.
             Mage::log('UltraDev_AIWriter (Exa) falhou — seguindo sem contexto extra: ' . $e->getMessage(), Zend_Log::WARN, 'ultradev_aiwriter.log');
             return null;
         }
